@@ -22,8 +22,8 @@ def get_amenities(amenity_id=None):
             list_amt.append(val_amt.to_dict())
         return jsonify(list_amt), 200
     else:
-        amenit = storage.get("Amenity", amenity_id)
-        if amenit is not None:
+        amenity = storage.get("Amenity", amenity_id)
+        if amenity is not None:
             return jsonify(amenity.to_dict())
         else:
             abort(404)
@@ -36,7 +36,7 @@ def delete_amenities(amenity_id=None):
 
     ament = storage.get("Amenity", amenity_id)
     if ament is not None:
-        storage.delete(amenity)
+        storage.delete(ament)
         storage.save()
         return jsonify({}), 200
     else:
@@ -53,9 +53,8 @@ def post_amenities():
     if "name" not in json_data.keys():
         return jsonify({'error': "Missing name"}), 400
     ament = Amenity(**json_data)
-    storage.new(amenity)
     storage.save()
-    return jsonify(amenity.to_dict()), 201
+    return jsonify(ament.to_dict()), 201
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'],
