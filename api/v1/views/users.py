@@ -34,7 +34,7 @@ def get_users(user_id=None):
 def delete_users(user_id=None):
     """delete method user"""
 
-    user = storage.get("Amenity", amenity_id)
+    user = storage.get("Amenity", user_id)
     if user is not None:
         storage.delete(user)
         storage.save()
