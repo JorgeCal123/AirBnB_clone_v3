@@ -50,10 +50,12 @@ def post_users():
     json_data = request.get_json()
     if not json_data:
         return jsonify({'error': 'Not a JSON'}), 400
-    if "name" not in json_data.keys():
-        return jsonify({'error': "Missing name"}), 400
+    if "email" not in json_data.keys():
+        return jsonify({'error': "Missing email"}), 400
+
+    if "password" not in json_data.keys():
+        return jsonify({'error': "Missing password"}), 400
     user = User(**json_data)
-    storage.new(user)
     storage.save()
     return jsonify(user.to_dict()), 201
 
