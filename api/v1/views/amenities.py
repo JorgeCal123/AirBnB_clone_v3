@@ -7,7 +7,7 @@ all default RESTFul API actions
 from api.v1.views import app_views
 from flask import Flask, Blueprint, jsonify, abort, request
 from models import storage
-from models.amenities import Amenity
+from models.amenity import Amenity
 
 
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
@@ -22,8 +22,8 @@ def get_amenities(amenity_id=None):
             list_amt.append(val_amt.to_dict())
         return jsonify(list_amt), 200
     else:
-        amenit = storage.get("Amenity", amenity_id)
-        if amenit is not None:
+        amenity = storage.get("Amenity", amenity_id)
+        if amenity is not None:
             return jsonify(amenity.to_dict())
         else:
             abort(404)
@@ -35,7 +35,7 @@ def delete_amenities(amenity_id=None):
     """delete method amenities"""
 
     ament = storage.get("Amenity", amenity_id)
-    if ament is not None:
+    if amenity is not None:
         storage.delete(amenity)
         storage.save()
         return jsonify({}), 200
