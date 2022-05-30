@@ -114,22 +114,13 @@ class TestFileStorage(unittest.TestCase):
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
 
-
-class TestFileStorage(unittest.TestCase):
-    """Test the FileStorage class"""
-    @unittest.skipIf(models.storage_t != 'file', "not testing file storage")
-    def test_all_returns_dict(self):
-        """Test that all returns a dictionaty"""
-        self.assertIs(type(models.storage.all()), dict)
-
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'file',
-                         "file storage")
+                     "file storage")
     def test_get(self):
         """Test that the get method properly retrievs objects"""
         storage = FileStorage()
         new_city = City()
         self.assertIs(storage.get("City", new_city.id), new_city)
-
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
                      "not testing file storage")
