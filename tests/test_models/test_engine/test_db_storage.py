@@ -75,7 +75,7 @@ class TestDBStorage(unittest.TestCase):
         """Test that all returns a dictionaty"""
         self.assertIs(type(models.storage.all()), dict)
 
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
                      "not testing file storage")
     def test_get(self):
         """Test that the get method properly retrievs objects"""
