@@ -79,10 +79,7 @@ class DBStorage:
         """Returns the object based on the class and its
         ID, or None if not found"""
         dictt = self.all(cls)
-        for key, value in classes.items():
-            if cls == value:
-                cls = key
-        key = "{}.{}".format(cls, id)
+        key = cls + "." + id
         if key in dictt:
             return(dictt[key])
         return(None)
