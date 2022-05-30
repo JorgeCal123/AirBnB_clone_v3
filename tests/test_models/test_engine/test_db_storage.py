@@ -14,6 +14,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+from models import storage
 import json
 import os
 import pep8
@@ -65,8 +66,16 @@ test_db_storage.py'])
             self.assertIsNot(func[1].__doc__, None,
                              "{:s} method needs a docstring".format(func[0]))
             self.assertTrue(len(func[1].__doc__) >= 1,
-                            "{:s} method needs a docstring".format(func[0]))
+                           "{:s} method needs a docstring".format(func[0]))
 
+    def test_get(self):
+        '''Test get method'''
+        new_state = State(name="TestState")
+        storage.new(new_state)
+        key = "State.{}".format(new_state.id)
+        obj_storage = storage.get("State", new_state.id)
+        self.assertEqual(new_state.id, obj_storage.id)
+        self.assertIsInstance(obj_storage, State)
 
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
