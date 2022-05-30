@@ -76,6 +76,7 @@ class FileStorage:
         for key, value in classes.items():
             if cls == value:
                 cls = key
+        key = "{}.{}".format(cls, id)
         if key in dictt:
             return(dictt[key])
         return(None)
