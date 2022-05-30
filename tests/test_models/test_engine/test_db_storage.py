@@ -42,7 +42,7 @@ class TestDBStorageDocs(unittest.TestCase):
         """Test tests/test_models/test_db_storage.py conforms to PEP8."""
         pep8s = pep8.StyleGuide(quiet=True)
         result = pep8s.check_files(['tests/test_models/test_engine/\
-test_db_storage.py'])
+                                   test_db_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -67,15 +67,6 @@ test_db_storage.py'])
                              "{:s} method needs a docstring".format(func[0]))
             self.assertTrue(len(func[1].__doc__) >= 1,
                            "{:s} method needs a docstring".format(func[0]))
-
-    def test_get(self):
-        '''Test get method'''
-        new_state = State(name="TestState")
-        storage.new(new_state)
-        key = "State.{}".format(new_state.id)
-        obj_storage = storage.get("State", new_state.id)
-        self.assertEqual(new_state.id, obj_storage.id)
-        self.assertIsInstance(obj_storage, State)
 
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
