@@ -3,7 +3,7 @@
 Module app
 """
 from flask import Flask, Blueprint, jsonify
-from flask_cors import CORS
+#from flask_cors import CORS
 from models import storage
 from os import getenv
 from api.v1.views import app_views
@@ -12,7 +12,7 @@ from api.v1.views import app_views
 app = Flask(__name__)
 app.register_blueprint(app_views)
 
-cors = CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
+#cors = CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
 
 @app.teardown_appcontext
 def teardown(exception):
